@@ -61,6 +61,9 @@ li{
 }
 .removeBtn {
 	margin-left: auto;
-	color:red;
+	color:#333;	
+}
+.removeBtn i{
+	line-height: 50px;
 }
 </style>

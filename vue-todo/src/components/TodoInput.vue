@@ -55,5 +55,6 @@ input:focuse{
 .addBtn{
 	color:#fff;
 	vertical-align: middle;
+	line-height: 50px;
 }
 </style>
