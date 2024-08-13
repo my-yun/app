@@ -1,8 +1,9 @@
 <template>
 	<div>
 		<ul>
-			<li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem" class="shadow">
-				{{ todoItem }}
+			<li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item" class="shadow">
+				<i class="fa-regular fa-square-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" v-on:click="toggleComplete(todoItem, index)"></i>
+				<span v-bind:class="{textCompleted: todoItem.completed}">{{ todoItem.item }}</span>
 				<span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
 					<i class="fa-solid fa-trash"></i>
 				</span>
@@ -21,14 +22,21 @@ export default {
 	methods: {
 		removeTodo: function(todoItem, index){
 			localStorage.removeItem(todoItem);
+			console.log(this.todoItems);
 			this.todoItems.splice(index, 1);                                                                                                                                                                                         
+		},
+		toggleComplete: function(todoItem, index){
+			console.log(todoItem+index);
+			todoItem.completed =!todoItem.completed;
 		}
 	},
 	created: function(){
 		if(localStorage.length>0){
 			for(var i = 0; i < localStorage.length; i++){
 				if(localStorage.key(i) !== 'loglevel:webpack-dev-version'){
-					this.todoItems.push(localStorage.key(i));
+					this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+				
+					// this.todoItems.push(localStorage.key(i));
 				}
 			}
 		}
@@ -52,9 +60,9 @@ li{
 	padding: 0 0.9rem;
 	background:#fff;
 	border-radius: 5px;
+	align-items: center
 }
 .checkBtn {
-	line-height: 45px;
 	color:#696;
 	margin-right: 5px;
 }
@@ -68,8 +76,5 @@ li{
 .removeBtn {
 	margin-left: auto;
 	color:#333;	
-}
-.removeBtn i{
-	line-height: 50px;
 }
 </style>
