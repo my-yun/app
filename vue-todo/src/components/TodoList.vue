@@ -21,13 +21,16 @@ export default {
 	}, 
 	methods: {
 		removeTodo: function(todoItem, index){
-			localStorage.removeItem(todoItem);
+			localStorage.removeItem(todoItem.item);
 			console.log(this.todoItems);
 			this.todoItems.splice(index, 1);                                                                                                                                                                                         
 		},
 		toggleComplete: function(todoItem, index){
 			console.log(todoItem+index);
 			todoItem.completed =!todoItem.completed;
+
+			localStorage.removeItem(todoItem.item);
+			localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
 		}
 	},
 	created: function(){
