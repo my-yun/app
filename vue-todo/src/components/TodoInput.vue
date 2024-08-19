@@ -6,14 +6,22 @@
 		<span class="addContainer" v-on:click="addTodo">
 			<i class="fa-solid fa-plus addBtn"></i>
 		</span>
+
+		<!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
+		<!-- use the modal component, pass in the prop -->
+		<modal v-if="showModal" @close="showModal = false">
+			<template v-solt:header>경고!</template>
+		</modal>
 	</div>
 </template>
 
-<script>
+<script> 
+import Modal from './common/TodoModal.vue'
 export default {
 	data:function(){
 		return{
-			newTodoItem: ""
+			newTodoItem: "",
+			showModal: false
 		}
 	},
 	methods: {
@@ -23,12 +31,19 @@ export default {
 			if(this.newTodoItem !== ''){
 				this.$emit('addTodoItem', this.newTodoItem);
 				this.clearInput();
+				
+			}else{
+				this.showModal = !this.showModal;
+				// alert('내용을 입력해 주세요.');
 			}
 			
 		},
 		clearInput: function(){
 			this.newTodoItem = "";
 		}
+	},
+	components: {
+		Modal:Modal
 	}
 }
 </script>
@@ -63,5 +78,19 @@ input:focuse{
 	color:#fff;
 	vertical-align: middle;
 	line-height: 50px;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 </style>
