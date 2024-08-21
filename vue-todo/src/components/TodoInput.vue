@@ -37,7 +37,6 @@ export default {
 			if(this.newTodoItem !== ''){
 				this.$emit('addTodoItem', this.newTodoItem);
 				this.clearInput();
-				
 			}else{
 				this.showModal = !this.showModal;
 				// alert('내용을 입력해 주세요.');
@@ -71,6 +70,9 @@ input:focuse{
 	width: 75%;
 	padding:0 10px;
 	box-sizing: border-box;
+}
+.inputBox input:focus{
+	outline: none;
 }
 .addContainer {
 	float: right;
