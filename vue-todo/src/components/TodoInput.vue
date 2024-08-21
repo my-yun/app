@@ -9,14 +9,20 @@
 
 		<!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
 		<!-- use the modal component, pass in the prop -->
-		<modal v-if="showModal" @close="showModal = false">
-			<template v-solt:header>경고!</template>
-		</modal>
+		<Modal v-if="showModal" @close="showModal = false">
+			<template v-slot:header>
+				<h3>경고!</h3>
+				<i class="closeModalBtn fa-solid fa-xmark" v-on:click="showModal=false"></i>
+			</template>
+			<template v-slot:body>
+				<p>할 일을 입력하세요.</p>
+			</template>
+		</Modal>
 	</div>
 </template>
 
 <script> 
-import Modal from './common/TodoModal.vue'
+import Modal from './common/TodoModal.vue';
 export default {
 	data:function(){
 		return{
@@ -92,5 +98,13 @@ input:focuse{
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.closeModalBtn{
+	position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: #000;
+    cursor: pointer;
 }
 </style>
