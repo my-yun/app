@@ -6,7 +6,7 @@
 
 					<div class="modal-header">
 						<slot name="header">default header</slot>
-					</div>
+					</div> 
 
 					<div class="modal-body">
 						<slot name="body">
