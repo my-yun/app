@@ -6,9 +6,7 @@
 
 
 # Demo
-
-(데모 페이지 링크 연결 준비중.)
-
+https://my-yun.github.io/
 
 
 # Features
